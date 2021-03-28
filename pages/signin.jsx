@@ -68,7 +68,9 @@ export default function Signin() {
               ref={register({ required: 'Password is required' })}
               // disabled={!watchEmail}
             />
-            <Form.Submit type="submit">Sign In</Form.Submit>
+            <Form.Submit type="submit" disabled={Object.keys(errors).length}>
+              Sign In
+            </Form.Submit>
           </Form.Base>
 
           <Form.Text>
