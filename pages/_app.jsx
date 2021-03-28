@@ -1,4 +1,6 @@
+import 'normalize.css'
 import Head from 'next/head'
+import { GlobalStyles } from './global-styles'
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -6,6 +8,7 @@ function MyApp({ Component, pageProps }) {
       <Head>
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <GlobalStyles />
       <Component {...pageProps} />
     </>
   )
