@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import { JumbotronContainer } from '../containers/jumbotron'
+import { FooterContainer } from '../containers/footer'
 
 export default function Home() {
   return (
@@ -9,6 +10,7 @@ export default function Home() {
       </Head>
 
       <JumbotronContainer />
+      <FooterContainer />
     </div>
   )
 }
