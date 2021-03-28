@@ -1,6 +1,7 @@
 import 'normalize.css'
 import Head from 'next/head'
 import { GlobalStyles } from '../styles/global-styles'
+import FirebaseProvider from '../context/FirebaseContext'
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -8,8 +9,11 @@ function MyApp({ Component, pageProps }) {
       <Head>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <GlobalStyles />
-      <Component {...pageProps} />
+
+      <FirebaseProvider>
+        <GlobalStyles />
+        <Component {...pageProps} />
+      </FirebaseProvider>
     </>
   )
 }
