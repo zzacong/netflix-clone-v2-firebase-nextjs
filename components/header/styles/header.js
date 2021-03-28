@@ -43,7 +43,7 @@ const Container = styled.main`
 `
 
 const Link = styled.p`
-  color: #fff;
+  color: white;
   text-decoration: none;
   margin-right: 30px;
   font-weight: ${({ active }) => (active === 'true' ? '700' : 'normal')};
@@ -237,7 +237,7 @@ const Logo = styled.img`
 const PlayButton = styled.button`
   box-shadow: 0 0.6vw 1vw -0.4vw rgba(0, 0, 0, 0.35);
   background-color: #e6e6e6;
-  color: #000;
+  color: black;
   border-width: 0;
   padding: 10px 20px;
   border-radius: 5px;
