@@ -1,6 +1,6 @@
 import 'normalize.css'
 import Head from 'next/head'
-import { GlobalStyles } from './global-styles'
+import { GlobalStyles } from '../styles/global-styles'
 
 function MyApp({ Component, pageProps }) {
   return (
