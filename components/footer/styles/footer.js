@@ -1,8 +1,8 @@
 import styled from 'styled-components/macro'
 
-const Container = styled.div`
+const Container = styled.footer`
   display: flex;
-  padding: 70px 0;
+  padding: 70px 40px;
   margin: auto;
   max-width: 1000px;
   flex-direction: column;
@@ -12,7 +12,7 @@ const Container = styled.div`
   }
 `
 
-const Column = styled.div`
+const Column = styled.section`
   display: flex;
   flex-direction: column;
   text-align: left;
@@ -31,18 +31,18 @@ const Row = styled.div`
 const Link = styled.a`
   color: #757575;
   margin-bottom: 20px;
-  font-size: 13px;
+  font-size: 0.8rem;
   text-decoration: none;
 `
 
 const Title = styled.p`
-  font-size: 16px;
+  font-size: 1rem;
   color: #757575;
   margin-bottom: 40px;
 `
 
 const Text = styled.p`
-  font-size: 13px;
+  font-size: 0.8rem;
   color: #757575;
   margin-bottom: 40px;
 `

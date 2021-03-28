@@ -22,21 +22,21 @@ const Pane = styled.div`
   }
 `
 
-const Title = styled.h1`
-  font-size: 50px;
+const Title = styled.h3`
+  font-size: 3rem;
   line-height: 1.1;
   margin-bottom: 8px;
   @media (max-width: 600px) {
-    font-size: 35px;
+    font-size: 2rem;
   }
 `
 
 const SubTitle = styled.h2`
-  font-size: 26px;
+  font-size: 1.6rem;
   font-weight: normal;
   line-height: normal;
   @media (max-width: 600px) {
-    font-size: 18px;
+    font-size: 1.15rem;
   }
 `
 
