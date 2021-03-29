@@ -5,8 +5,8 @@ import { useForm } from 'react-hook-form'
 import { isEmail } from 'validator'
 
 import { useAuth } from '../hooks'
-import { FooterContainer } from '../containers/footer'
-import { HeaderContainer } from '../containers/header'
+import { FooterContainer } from '../containers/FooterContainer'
+import { HeaderContainer } from '../containers/HeaderContainer'
 import { Form } from '../components'
 
 export default function Signin() {
