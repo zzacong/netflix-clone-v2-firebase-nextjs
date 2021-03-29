@@ -1,14 +1,13 @@
-import { useContext } from 'react'
 import { useRouter } from 'next/router'
 import { useForm } from 'react-hook-form'
 import { isEmail } from 'validator'
 import { FooterContainer } from '../containers/footer'
 import { HeaderContainer } from '../containers/header'
 import { Form } from '../components'
-import { FirebaseContext } from '../context/FirebaseContext'
+import { useAuth } from '../hooks'
 
 export default function Signup() {
-  const { auth } = useContext(FirebaseContext)
+  const { signUp } = useAuth()
   const router = useRouter()
   const {
     register,
@@ -22,11 +21,7 @@ export default function Signup() {
   // TODO: check form input elements are valid email and password
   const handleSignin = async data => {
     try {
-      console.log(data)
-      const result = await auth.createUserWithEmailAndPassword(
-        data.email,
-        data.password
-      )
+      const result = await signUp(data.email, data.password)
       await result.user.updateProfile({
         displayName: data.name,
         photoURL: Math.floor(Math.random() * 5) + 1,

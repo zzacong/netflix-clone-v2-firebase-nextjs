@@ -1,14 +1,16 @@
-import { useContext } from 'react'
+import { useEffect } from 'react'
+import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { useForm } from 'react-hook-form'
 import { isEmail } from 'validator'
+
+import { useAuth } from '../hooks'
 import { FooterContainer } from '../containers/footer'
 import { HeaderContainer } from '../containers/header'
 import { Form } from '../components'
-import { FirebaseContext } from '../context/FirebaseContext'
 
 export default function Signin() {
-  const { auth } = useContext(FirebaseContext)
+  const { user, signIn } = useAuth()
   const router = useRouter()
   const {
     register,
@@ -21,10 +23,14 @@ export default function Signin() {
   } = useForm()
   // const watchEmail = watch('email')
 
+  useEffect(() => {
+    if (user) router.push('/browse')
+  }, [user])
+
   // TODO: check form input elements are valid email and password
   const handleSignin = async data => {
     try {
-      await auth.signInWithEmailAndPassword(data.email, data.password)
+      await signIn(data.email, data.password)
       router.push('/browse')
     } catch (err) {
       console.log('[ERROR]', err)
@@ -40,6 +46,9 @@ export default function Signin() {
 
   return (
     <>
+      <Head>
+        <title>Signin | Netflix</title>
+      </Head>
       <HeaderContainer>
         <Form>
           <Form.Title>Sign In</Form.Title>
