@@ -1,10 +1,12 @@
 import { useEffect } from 'react'
 import { useRouter } from 'next/router'
-import { useAuth } from '../hooks'
+import { useAuth, useContent } from '../hooks'
 
 export default function Browse() {
   const router = useRouter()
   const { user, loading, signOut } = useAuth()
+  const { series } = useContent('series')
+  const { films } = useContent('films')
 
   useEffect(() => {
     if (!user && !loading) router.push('/signin')
