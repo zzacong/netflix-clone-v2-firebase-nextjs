@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react'
-import { FirebaseContext } from '../context/FirebaseContext'
+import { FirebaseContext } from '../contexts/FirebaseContext'
 
 export default function useAuth() {
   const [user, setUser] = useState()

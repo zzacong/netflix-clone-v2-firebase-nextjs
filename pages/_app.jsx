@@ -1,7 +1,7 @@
 import 'normalize.css'
 import Head from 'next/head'
 import { GlobalStyles } from '../styles/global-styles'
-import FirebaseProvider from '../context/FirebaseContext'
+import FirebaseProvider from '../contexts/FirebaseContext'
 
 function MyApp({ Component, pageProps }) {
   return (
