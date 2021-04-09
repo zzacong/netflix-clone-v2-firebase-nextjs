@@ -14,12 +14,12 @@ export function IsUserRedirect({ children, next }) {
 }
 
 export function ProtectedRoute({ children }) {
-  const [user, loading] = useAuth()
+  const { user, loading } = useAuth()
   const router = useRouter()
 
   useEffect(() => {
     if (!user && !loading) router.push('/signin')
   }, [user, loading])
 
-  return children
+  return user ? children : null
 }

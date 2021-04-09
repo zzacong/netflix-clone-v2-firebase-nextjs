@@ -1,4 +1,3 @@
-import { useEffect } from 'react'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { useForm } from 'react-hook-form'
@@ -8,9 +7,10 @@ import { useAuth } from '../hooks'
 import { FooterContainer } from '../containers/FooterContainer'
 import { HeaderContainer } from '../containers/HeaderContainer'
 import { Form } from '../components'
+import { IsUserRedirect } from '../helpers/routes'
 
 export default function Signin() {
-  const { user, signIn } = useAuth()
+  const { signIn } = useAuth()
   const router = useRouter()
   const {
     register,
@@ -22,10 +22,6 @@ export default function Signin() {
     reset,
   } = useForm()
   // const watchEmail = watch('email')
-
-  useEffect(() => {
-    if (user) router.push('/browse')
-  }, [user])
 
   // TODO: check form input elements are valid email and password
   const handleSignin = async data => {
@@ -45,7 +41,7 @@ export default function Signin() {
   const onError = (errs, e) => console.log(errs, e)
 
   return (
-    <>
+    <IsUserRedirect next="/browse">
       <Head>
         <title>Signin | Netflix</title>
       </Head>
@@ -92,6 +88,6 @@ export default function Signin() {
         </Form>
       </HeaderContainer>
       <FooterContainer />
-    </>
+    </IsUserRedirect>
   )
 }
