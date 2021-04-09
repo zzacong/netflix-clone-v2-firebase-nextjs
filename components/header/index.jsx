@@ -1,4 +1,7 @@
+import { useState } from 'react'
 import NextLink from 'next/link'
+import { MdInfoOutline, MdSearch } from 'react-icons/md'
+import { IoMdPlay } from 'react-icons/io'
 import {
   Container,
   Group,
@@ -13,6 +16,7 @@ import {
   SearchInput,
   ButtonLink,
   PlayButton,
+  InfoButton,
   Text,
   Feature,
   Logo,
@@ -64,4 +68,36 @@ Header.Picture = ({ src, ...props }) => (
 
 Header.Dropdown = ({ children, ...props }) => (
   <Dropdown {...props}>{children}</Dropdown>
+)
+
+Header.Search = ({ searchTerm, setSearchTerm, ...props }) => {
+  const [searchActive, setSearchActive] = useState(false)
+
+  return (
+    <Search active={searchActive} {...props}>
+      <SearchIcon onClick={() => setSearchActive(prev => !prev)}>
+        <MdSearch />
+      </SearchIcon>
+      <SearchInput
+        value={searchTerm}
+        onChange={e => setSearchTerm(e.target.value)}
+        placeholder="Films, series"
+        active={searchActive}
+      />
+    </Search>
+  )
+}
+
+Header.PlayButton = ({ children, ...props }) => (
+  <PlayButton {...props}>
+    <IoMdPlay />
+    {children}
+  </PlayButton>
+)
+
+Header.InfoButton = ({ children, ...props }) => (
+  <InfoButton {...props}>
+    <MdInfoOutline />
+    {children}
+  </InfoButton>
 )

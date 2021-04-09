@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import { Header, Loading } from '../components'
-import { auth } from '../config/firebase'
 import { useAuth } from '../hooks'
 import SelectProfilesContainer from './ProfilesContainer'
 
@@ -8,6 +7,7 @@ export default function BrowseContainer({ slides }) {
   const { user, signOut } = useAuth()
   const [profile, setProfile] = useState({})
   const [loading, setLoading] = useState(true)
+  const [searchTerm, setSearchTerm] = useState('')
 
   useEffect(() => {
     const t1 = setTimeout(() => {
@@ -28,6 +28,11 @@ export default function BrowseContainer({ slides }) {
           </Header.Group>
 
           <Header.Group>
+            <Header.Search
+              searchTerm={searchTerm}
+              setSearchTerm={setSearchTerm}
+            />
+
             <Header.Profile>
               <Header.Picture src={user.photoURL} />
               <Header.Dropdown>
@@ -37,7 +42,9 @@ export default function BrowseContainer({ slides }) {
                 </Header.Group>
 
                 <Header.Group>
-                  <Header.TextLink onClick={signOut}>Sign Out</Header.TextLink>
+                  <Header.TextLink onClick={signOut}>
+                    Sign out of Netflix
+                  </Header.TextLink>
                 </Header.Group>
               </Header.Dropdown>
             </Header.Profile>
@@ -53,6 +60,10 @@ export default function BrowseContainer({ slides }) {
             he projects in a futile attempt to feel like he's part of the world
             around him.
           </Header.Text>
+          <Header.Group>
+            <Header.PlayButton>Play</Header.PlayButton>
+            <Header.InfoButton>More Info</Header.InfoButton>
+          </Header.Group>
         </Header.Feature>
       </Header>
     </>

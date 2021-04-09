@@ -68,36 +68,21 @@ const Group = styled.div`
   align-items: center;
 `
 
-const SearchInput = styled.input`
-  background-color: rgba(64, 64, 64, 0.5);
-  color: white;
-  border: 1px solid white;
-  transition: width 0.5s;
-  height: 30px;
-  font-size: 0.87rem;
-  border-radius: 4px;
-  margin-left: ${({ active }) => (active === true ? '10px' : '0')};
-  padding: ${({ active }) => (active === true ? '0 10px' : '0')};
-  opacity: ${({ active }) => (active === true ? '1' : '0')};
-  width: ${({ active }) => (active === true ? '200px' : '0px')};
-
-  &:focus {
-    background-color: rgba(0, 0, 0, 0.8);
-  }
-`
-
 const Search = styled.div`
   display: flex;
   align-items: center;
-
-  svg {
-    color: white;
-    cursor: pointer;
-  }
+  transition: all 0.5s;
 
   @media (max-width: 700px) {
     display: none;
   }
+
+  ${({ active }) =>
+    active &&
+    css`
+      background-color: rgba(0, 0, 0, 0.6);
+      border: 1px solid white;
+    `}
 `
 
 const SearchIcon = styled.button`
@@ -105,17 +90,31 @@ const SearchIcon = styled.button`
   background-color: transparent;
   border: 0;
   outline: 0;
-  height: 32px;
-  width: 32px;
+  height: 2rem;
+  width: 2rem;
   padding: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: grid;
+  place-items: center;
 
-  img {
-    filter: brightness(0) invert(1);
-    width: 1rem;
+  svg {
+    color: white;
+    width: 1.2rem;
+    height: 1.2rem;
+    stroke-width: 1.5px;
   }
+`
+
+const SearchInput = styled.input`
+  background-color: transparent;
+  color: white;
+  outline: none;
+  border: none;
+  transition: width 0.5s;
+  height: 2rem;
+  font-size: 0.87rem;
+  padding: ${({ active }) => (active ? '0 10px' : '0')};
+  opacity: ${({ active }) => (active ? '1' : '0')};
+  width: ${({ active }) => (active ? '200px' : '0px')};
 `
 
 const ButtonLink = styled.a`
@@ -239,23 +238,43 @@ const Logo = styled.img`
   }
 `
 
-const PlayButton = styled.button`
+const FeatureButton = styled.button`
   box-shadow: 0 0.6vw 1vw -0.4vw rgba(0, 0, 0, 0.35);
-  background-color: #e6e6e6;
+  background-color: white;
   color: black;
-  border-width: 0;
-  padding: 10px 20px;
-  border-radius: 5px;
-  max-width: 130px;
   font-weight: bold;
-  font-size: 1.25rem;
-  margin-top: 10px;
+  font-size: 1rem;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  height: 2.5rem;
+  margin-right: 1rem;
   cursor: pointer;
-  transition: background-color 0.5s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   &:hover {
-    background-color: #ff1e1e;
-    color: white;
+    opacity: 0.8;
+  }
+
+  svg {
+    margin-right: 0.5rem;
+  }
+`
+
+const PlayButton = styled(FeatureButton)`
+  background-color: white;
+  color: black;
+`
+
+const InfoButton = styled(FeatureButton)`
+  background-color: rgba(109, 109, 110, 0.7);
+  color: white;
+
+  svg {
+    font-size: 1.5rem;
   }
 `
 
@@ -276,4 +295,5 @@ export {
   Text,
   Logo,
   PlayButton,
+  InfoButton,
 }
