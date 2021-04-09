@@ -1,6 +1,6 @@
 import { Header, Profiles } from '../components'
 
-export default function ProfilesContainer({ user, setProfile }) {
+export default function SelectProfilesContainer({ user, setProfile }) {
   return (
     <>
       <Header bg={false}>

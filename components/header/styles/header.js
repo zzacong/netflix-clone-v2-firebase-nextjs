@@ -1,5 +1,6 @@
-import styled from 'styled-components/macro'
+import styled, { css } from 'styled-components/macro'
 
+// prettier-ignore
 const Background = styled.div`
   :root {
     --src: ${({ src }) =>
@@ -17,13 +18,17 @@ const Background = styled.div`
       rgba(0, 0, 0, 0.1),
       rgba(0, 0, 0, 0.35)
     ),
-    url(${({ src }) =>
-      src ? `../images/misc/${src}.jpg` : '../images/misc/home-bg.jpg'});
-
-  @media (max-width: 1100px) {
-    ${({ dontShowOnSmallViewPort }) =>
-      dontShowOnSmallViewPort && `background: none;`}
-  }
+      url(
+        ${ ({ src }) =>
+        src ? `../images/misc/${src}.jpg` : '../images/misc/home-bg.jpg'});
+  
+  ${ ({ dontShowOnSmallViewPort }) =>
+    dontShowOnSmallViewPort &&
+    css`
+      @media (max-width: 1100px) {
+        background: none;
+      }
+    `}
 `
 
 const Container = styled.main`
@@ -135,8 +140,8 @@ const Picture = styled.button`
   background: url(${({ src }) => src});
   background-size: contain;
   border: 0;
-  width: 32px;
-  height: 32px;
+  width: 2rem;
+  height: 2rem;
   cursor: pointer;
 `
 
@@ -145,8 +150,8 @@ const Dropdown = styled.div`
   position: absolute;
   background-color: black;
   padding: 10px;
-  width: 100px;
-  top: 32px;
+  width: 7rem;
+  top: 2rem;
   right: 10px;
 
   ${Group}:last-of-type ${Link} {
