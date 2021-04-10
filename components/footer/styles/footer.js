@@ -1,14 +1,19 @@
 import styled from 'styled-components/macro'
 
 const Container = styled.footer`
+  background: black;
   display: flex;
   padding: 70px 40px;
+  padding-bottom: 30px;
   margin: auto;
   max-width: 1000px;
   flex-direction: column;
+  position: fix;
+  bottom: 0;
 
   @media (max-width: 1000px) {
     padding: 70px 30px;
+    padding-bottom: 30px;
   }
 `
 

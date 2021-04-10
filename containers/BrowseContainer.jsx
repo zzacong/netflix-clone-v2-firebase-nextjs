@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Card, Header, Loading, Player } from '../components'
 import { useAuth } from '../hooks'
+import { FooterContainer } from './FooterContainer'
 import SelectProfilesContainer from './ProfilesContainer'
 
 export default function BrowseContainer({ slides }) {
@@ -109,6 +110,7 @@ export default function BrowseContainer({ slides }) {
           </Card>
         ))}
       </Card.Group>
+      <FooterContainer />
     </>
   ) : (
     <SelectProfilesContainer
