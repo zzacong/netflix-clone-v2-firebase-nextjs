@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Header, Loading } from '../components'
+import { Card, Header, Loading } from '../components'
 import { useAuth } from '../hooks'
 import SelectProfilesContainer from './ProfilesContainer'
 
@@ -8,6 +8,8 @@ export default function BrowseContainer({ slides }) {
   const [profile, setProfile] = useState({})
   const [loading, setLoading] = useState(true)
   const [searchTerm, setSearchTerm] = useState('')
+  const [category, setCategory] = useState('series')
+  const [slideRows, setSlideRows] = useState([])
 
   useEffect(() => {
     const t1 = setTimeout(() => {
@@ -16,6 +18,10 @@ export default function BrowseContainer({ slides }) {
     return () => clearTimeout(t1)
   }, [profile.displayName])
 
+  useEffect(() => {
+    setSlideRows(slides[category])
+  }, [slides, category])
+
   return profile.displayName ? (
     <>
       {loading ? <Loading src={user?.photoURL} /> : <Loading.ReleaseBody />}
@@ -23,8 +29,18 @@ export default function BrowseContainer({ slides }) {
         <Header.Frame>
           <Header.Group>
             <Header.Logo href="/" alt="Netflix" src="/logo.svg" />
-            <Header.TextLink>Series</Header.TextLink>
-            <Header.TextLink>Films</Header.TextLink>
+            <Header.TextLink
+              active={category === 'series'}
+              onClick={() => setCategory('series')}
+            >
+              Series
+            </Header.TextLink>
+            <Header.TextLink
+              active={category === 'films'}
+              onClick={() => setCategory('films')}
+            >
+              Films
+            </Header.TextLink>
           </Header.Group>
 
           <Header.Group>
@@ -66,6 +82,29 @@ export default function BrowseContainer({ slides }) {
           </Header.Group>
         </Header.Feature>
       </Header>
+
+      <Card.Group>
+        {slideRows.map(slideItem => (
+          <Card key={`${category}-${slideItem.title.toLowerCase()}`}>
+            <Card.Title>{slideItem.title}</Card.Title>
+            <Card.Entities>
+              {slideItem.data.map(item => (
+                <Card.Item key={item.docId} item={item}>
+                  <Card.Image
+                    src={`/images/${category}/${item.genre}/${item.slug}/small.jpg`}
+                  />
+                  <Card.Meta>
+                    <Card.Subtitle>{item.title}</Card.Subtitle>
+                    <Card.Text>{item.description}</Card.Text>
+                  </Card.Meta>
+                </Card.Item>
+              ))}
+            </Card.Entities>
+            <Card.Feature category={category}>
+            </Card.Feature>
+          </Card>
+        ))}
+      </Card.Group>
     </>
   ) : (
     <SelectProfilesContainer

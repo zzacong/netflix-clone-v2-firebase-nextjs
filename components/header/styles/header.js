@@ -51,7 +51,7 @@ const Link = styled.p`
   color: white;
   text-decoration: none;
   margin-right: 30px;
-  font-weight: ${({ active }) => (active === 'true' ? '700' : 'normal')};
+  font-weight: ${({ active }) => (active ? '700' : 'normal')};
   cursor: pointer;
 
   &:hover {
@@ -239,14 +239,13 @@ const Logo = styled.img`
 `
 
 const FeatureButton = styled.button`
-  box-shadow: 0 0.6vw 1vw -0.4vw rgba(0, 0, 0, 0.35);
   background-color: white;
   color: black;
   font-weight: bold;
   font-size: 1rem;
   border: none;
   outline: none;
-  border-radius: 5px;
+  border-radius: 3px;
   padding: 10px 20px;
   height: 2.5rem;
   margin-right: 1rem;
