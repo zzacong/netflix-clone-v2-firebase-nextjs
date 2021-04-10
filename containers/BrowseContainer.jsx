@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Card, Header, Loading } from '../components'
+import { Card, Header, Loading, Player } from '../components'
 import { useAuth } from '../hooks'
 import SelectProfilesContainer from './ProfilesContainer'
 
@@ -101,6 +101,10 @@ export default function BrowseContainer({ slides }) {
               ))}
             </Card.Entities>
             <Card.Feature category={category}>
+              <Player>
+                <Player.Button />
+                <Player.Video src="/videos/bunny.mp4" />
+              </Player>
             </Card.Feature>
           </Card>
         ))}
