@@ -22,8 +22,8 @@ const Background = styled.div`
         ${ ({ src }) =>
         src ? `../images/misc/${src}.jpg` : '../images/misc/home-bg.jpg'});
   
-  ${ ({ dontShowOnSmallViewPort }) =>
-    dontShowOnSmallViewPort &&
+  ${ ({ hideOnSmallViewPort }) =>
+    hideOnSmallViewPort &&
     css`
       @media (max-width: 1100px) {
         background: none;

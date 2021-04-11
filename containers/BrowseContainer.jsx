@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import Fuse from 'fuse.js'
 import { Card, Header, Loading, Player } from '../components'
 import { useAuth } from '../hooks'
 import { FooterContainer } from './FooterContainer'
@@ -15,7 +16,7 @@ export default function BrowseContainer({ slides }) {
   useEffect(() => {
     const t1 = setTimeout(() => {
       setLoading(false)
-    }, 3000)
+    }, 1500)
     return () => clearTimeout(t1)
   }, [profile.displayName])
 
@@ -23,10 +24,21 @@ export default function BrowseContainer({ slides }) {
     setSlideRows(slides[category])
   }, [slides, category])
 
+  useEffect(() => {
+    const fuse = new Fuse(slideRows, {
+      keys: ['data.description', 'data.title', 'data.genre'],
+    })
+    const results = fuse.search(searchTerm).map(({ item }) => item)
+
+    if (slideRows.length > 0 && searchTerm.length > 3 && results.length)
+      setSlideRows(results)
+    else setSlideRows(slides[category])
+  }, [searchTerm])
+
   return profile.displayName ? (
     <>
       {loading ? <Loading src={user?.photoURL} /> : <Loading.ReleaseBody />}
-      <Header src="joker1" dontShowOnSmallViewPort>
+      <Header src="joker1" hideOnSmallViewPort>
         <Header.Frame>
           <Header.Group>
             <Header.Logo href="/" alt="Netflix" src="/logo.svg" />
