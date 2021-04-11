@@ -1,15 +1,15 @@
 import styled from 'styled-components/macro'
 
-export const Container = styled.div`
+const Container = styled.div`
   display: flex;
   border-bottom: 8px solid #222;
 `
 
-export const Frame = styled.div`
+const Frame = styled.div`
   margin-bottom: 40px;
 `
 
-export const Inner = styled.div`
+const Inner = styled.div`
   display: flex;
   padding: 70px 45px;
   flex-direction: column;
@@ -17,7 +17,7 @@ export const Inner = styled.div`
   margin: auto;
 `
 
-export const Title = styled.h2`
+const Title = styled.h2`
   font-size: 2.5rem;
   line-height: 1;
   margin-top: 0;
@@ -29,7 +29,7 @@ export const Title = styled.h2`
   }
 `
 
-export const Item = styled.section`
+const Item = styled.section`
   color: white;
   margin: auto;
   margin-bottom: 10px;
@@ -45,7 +45,7 @@ export const Item = styled.section`
   }
 `
 
-export const Header = styled.header`
+const Header = styled.header`
   display: flex;
   justify-content: space-between;
   cursor: pointer;
@@ -62,7 +62,7 @@ export const Header = styled.header`
   }
 `
 
-export const Body = styled.article`
+const Body = styled.article`
   font-size: 1rem;
   font-weight: normal;
   line-height: normal;
@@ -70,16 +70,15 @@ export const Body = styled.article`
   white-space: pre-wrap;
   user-select: none;
   overflow: hidden;
+  transition: all 0.25s cubic-bezier(0.5, 0, 0.1, 1);
 
   &.closed {
+    opacity: 0;
     max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.25s cubic-bezier(0.5, 0, 0.1, 1);
   }
 
   &.open {
     max-height: 1200px;
-    transition: max-height 0.25s cubic-bezier(0.5, 0, 0.1, 1);
   }
 
   span {
@@ -92,3 +91,5 @@ export const Body = styled.article`
     line-height: 1.2rem;
   }
 `
+
+export { Container, Frame, Inner, Title, Item, Header, Body }
