@@ -149,7 +149,7 @@ const Dropdown = styled.div`
   position: absolute;
   background-color: black;
   padding: 10px;
-  width: 7rem;
+  width: 10rem;
   top: 2rem;
   right: 10px;
 
