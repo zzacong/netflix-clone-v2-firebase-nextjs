@@ -5,7 +5,11 @@
     "es2021": true
   },
   "extends": [
+    "eslint:recommended",
     "plugin:react/recommended",
+    "plugin:jest/recommended",
+    "plugin:jest-dom/recommended",
+    "plugin:testing-library/recommended",
     "airbnb",
     "plugin:prettier/recommended"
   ],
@@ -16,15 +20,16 @@
     "ecmaVersion": 12,
     "sourceType": "module"
   },
-  "plugins": ["react"],
+  "plugins": ["react", "prettier", "jest", "jest-dom", "testing-library"],
   "rules": {
     "import/prefer-default-export": "off",
+    "react/jsx-filename-extension": "off",
     "react/react-in-jsx-scope": "off",
     "react/jsx-props-no-spreading": "off",
     "react/prop-types": "off",
     "react/no-unescaped-entities": "off",
-    "react/no-unused-var": "warning",
     "eslintjsx-a11y/anchor-is-valid": "off",
-    "no-console": "off"
+    "no-console": "off",
+    "jsx-a11y/media-has-caption": "off"
   }
 }
