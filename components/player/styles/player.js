@@ -1,3 +1,4 @@
+import { MdClose } from 'react-icons/md'
 import styled from 'styled-components/macro'
 
 export const Container = styled.div``
@@ -12,7 +13,6 @@ export const Overlay = styled.div`
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.75);
-  margin: 0 20px;
 `
 
 export const Inner = styled.div`
@@ -20,44 +20,28 @@ export const Inner = styled.div`
   width: 100%;
   max-width: 900px;
   margin: auto;
+  box-shadow: 2px 2px 50px rgba(90, 90, 90, 0.5);
 
   video {
+    border-radius: 5px;
     height: 100%;
     width: 100%;
+    outline: none;
   }
 `
 
-export const Close = styled.button`
+export const Close = styled(MdClose)`
+  color: white;
+  font-size: 2rem;
   position: absolute;
   right: 15px;
   top: 15px;
-  width: 22px;
-  height: 22px;
   opacity: 0.3;
-  background-color: transparent;
-  border: 0;
   cursor: pointer;
+  transition: opacity 0.5s;
 
   &:hover {
     opacity: 1;
-  }
-
-  &:before,
-  &:after {
-    position: absolute;
-    left: 10px;
-    top: 0;
-    content: ' ';
-    height: 22px;
-    width: 2px;
-    background-color: #333;
-  }
-
-  &:before {
-    transform: rotate(45deg);
-  }
-  &:after {
-    transform: rotate(-45deg);
   }
 `
 

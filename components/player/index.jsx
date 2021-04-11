@@ -1,9 +1,9 @@
-import React, { useState, useContext, createContext } from 'react'
-import ReactDOM from 'react-dom'
+import { useState, useContext, createContext, useRef } from 'react'
+import { createPortal } from 'react-dom'
 import { IoMdPlay } from 'react-icons/io'
 import { Container, Button, Overlay, Inner, Close } from './styles/player'
 
-export const PlayerContext = createContext()
+const PlayerContext = createContext()
 
 export default function Player({ children, ...props }) {
   const [showPlayer, setShowPlayer] = useState(false)
@@ -15,13 +15,22 @@ export default function Player({ children, ...props }) {
   )
 }
 
-Player.Video = function PlayerVideo({ src, ...props }) {
+Player.Video = ({ src }) => {
   const { showPlayer, setShowPlayer } = useContext(PlayerContext)
+  const videoRef = useRef()
+
   if (!showPlayer) return null
-  return ReactDOM.createPortal(
-    <Overlay onClick={() => setShowPlayer(false)} data-testid="player">
+
+  // * ReactDOM.createPortal: render children into a DOM node that exists outside the DOM hierarchy of the parent component
+  return createPortal(
+    <Overlay
+      onClick={e => {
+        if (videoRef.current !== e.target) setShowPlayer(false)
+      }}
+      data-testid="player"
+    >
       <Inner>
-        <video id="netflix-player" controls>
+        <video id="netflix-player" controls ref={videoRef}>
           <source src={src} type="video/mp4" />
         </video>
         <Close />
@@ -31,13 +40,12 @@ Player.Video = function PlayerVideo({ src, ...props }) {
   )
 }
 
-Player.Button = function PlayerButton({ ...props }) {
-  const { showPlayer, setShowPlayer } = useContext(PlayerContext)
+Player.Button = ({ ...props }) => {
+  const { setShowPlayer } = useContext(PlayerContext)
 
   return (
-    <Button onClick={() => setShowPlayer(showPlayer => !showPlayer)} {...props}>
-      <IoMdPlay />
-      Play
+    <Button onClick={() => setShowPlayer(prev => !prev)} {...props}>
+      <IoMdPlay /> Play
     </Button>
   )
 }

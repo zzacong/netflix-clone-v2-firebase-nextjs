@@ -1,4 +1,4 @@
-import React, { useState, useContext, createContext } from 'react'
+import { useState, useContext, createContext } from 'react'
 import capitalize from 'lodash.capitalize'
 import { MdClose } from 'react-icons/md'
 import {
